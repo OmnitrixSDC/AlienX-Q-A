@@ -8,8 +8,6 @@
 
 ## Table of Contents
 - [Project Overview](#project-overview)
-- [Installation & Setup](#installation--setup)
-- [Components](#components)
 - [Contributors](#contributors)
 
 ## Project Overview
@@ -17,32 +15,7 @@ Modern & Interactive front-end e-commerce web application (mobile-friendly) that
 
 Contains 3 main components Product Overview, Related Items & Outfits, and Ratings & Reviews each built from sub-components.
 
-## Installation & Setup
 
-### Step 1
-```
-$ git clone https://github.com/Team-Rhydon/Rhydon.git
-$ cd Rhydon
-$ npm install
-$ npm run build
-$ npm run server-dev
-```
-### Step 2
-- Create a .env file based on example.env
-- Copy and Paste everything from example.env to .env
-- replace text in API_KEY="your github token goes here"
-### Step 3
-- Open http://localhost:3000
-
-* * *
-
-# Components
-- [Product Overview & Details](#product-overview--details)
-- [Related Products & Outfits](#related-products--outfits)
-- [Search Feature](#search-feature)
-- [Ratings & Reviews](#ratings--reviews)
-
-## Product Overview & Details
 
 <img src='/client/src/assets/photos/productoverview.png' width='725px'/>
 
@@ -70,55 +43,8 @@ $ npm run server-dev
 
 </details>
 
-<details><summary><b>Add To Cart & Cart Modal</b></summary>
-
-<br/>
-
->User is presented all sizes of the current product. Selecting a size presents the user to choose a quantity and ability to add to cart
-
->Selecting a different size conceals the ability to choose quantity and disables add to cart button until size is selected
-
->User is presented with all items added to cart with descripted purchase, sorted from most recent to oldest
-
->User can remove product from cart or continue shopping
-
-![cart](https://imgur.com/IZ5m0Fo.gif)
-
-<!-- <img src='https://imgur.com/IZ5m0Fo.gif' width='700px' align-self="start"/> -->
-<!-- <img src='https://imgur.com/1uPieh6.gif' width='300px'/> -->
-
-</details>
-
-<details><summary><b>Expanded View & Share</b></summary>
-
-<br/>
-
->User has the ability to expand main image and slide through style gallery
-
->Allows users to share to social platforms
-
-![](https://imgur.com/IMLBT7m.gif)
-
-</details>
-
-<details open><summary><b>Product Description</b></summary>
-
-<br/>
-
->User can toggle to display or hide the current product description
-
->Presents the user with product slogan, description, and features
-
-![description](https://i.imgur.com/KstXQGQ.gif)
-
-</details>
-
 
 ## Ratings & Reviews
-
-![](https://imgur.com/Xq4e2WE.jpg)
-
-
 
 ***
 
