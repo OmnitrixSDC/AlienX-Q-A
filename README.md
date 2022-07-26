@@ -13,37 +13,6 @@
 ## Project Overview
 Modern & Interactive front-end e-commerce web application (mobile-friendly) that interacts with an API. Developed and designed from scratch
 
-Contains 3 main components Product Overview, Related Items & Outfits, and Ratings & Reviews each built from sub-components.
-
-
-
-<img src='/client/src/assets/photos/productoverview.png' width='725px'/>
-
-<details><summary><b>Main Image Slide & Mini Carousel</b></summary>
-
-<br/>
-
->User can infinitely scroll through the main slide or mini carousel
-
->Provides a smooth experience for clients rendering accurate images before and after selected photo
-
-![slides](https://imgur.com/jN3CsN2.gif)
-
-</details>
-
-<details><summary><b>Style Selector</b></summary>
-
-<br/>
-
->User is presented all styles of the current product 
-
->The client has the ability to select different styles, changing the main image display and mini carousel gallery for that specific style
-
-![style-selector](https://imgur.com/kQEwehm.gif)
-
-</details>
-
-
 ## Ratings & Reviews
 
 ***
