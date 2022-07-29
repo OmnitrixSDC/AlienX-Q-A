@@ -1,5 +1,6 @@
-DROP TABLE IF EXISTS questions;
-DROP TABLE IF EXISTS answers;
+DROP TABLE IF EXISTS questions CASCADE;
+DROP TABLE IF EXISTS answers CASCADE;
+DROP TABLE IF EXISTS photos CASCADE;
 
 CREATE TABLE questions (
   id SERIAL UNIQUE PRIMARY KEY,
@@ -16,6 +17,8 @@ CREATE TABLE questions (
 ALTER TABLE questions
 ALTER COLUMN date_written
 SET DATA TYPE timestamptz USING timestamptz 'epoch' + date_written * interval '1 millisecond';
+CREATE INDEX idx_questions_product_id
+ON questions(product_id);
 
 CREATE TABLE answers (
   id SERIAL UNIQUE PRIMARY KEY,
@@ -36,6 +39,9 @@ ALTER TABLE answers
 ALTER COLUMN date_written
 SET DATA TYPE timestamptz USING timestamptz 'epoch' + date_written * interval '1 millisecond';
 
+  CREATE INDEX idx_answers_question_id
+  ON answers(question_id);
+
   CREATE TABLE photos (
   id SERIAL UNIQUE PRIMARY KEY,
   answer_id INTEGER,
@@ -46,3 +52,6 @@ SET DATA TYPE timestamptz USING timestamptz 'epoch' + date_written * interval '1
   );
 
 \COPY photos FROM '../data/answers_photos.csv' DELIMITER ',' CSV HEADER;
+
+  CREATE INDEX idx_photos_answer_id
+  ON photos(answer_id);

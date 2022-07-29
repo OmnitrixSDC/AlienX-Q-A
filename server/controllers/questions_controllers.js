@@ -1,40 +1,30 @@
 const db = require('../db');
 
 function getQuestions(product_id, page, count) {
-  // text: 'SELECT * FROM questions WHERE id IN $1 LIMIT $2',
-
-  // id SERIAL UNIQUE PRIMARY KEY,
-  // product_id INTEGER NOT NULL,
-  // body CHARACTER VARYING(1000),
-  // date_written BIGINT NOT NULL,
-  // asker_name CHARACTER VARYING(60) NOT NULL,
-  // asker_email TEXT NOT NULL,
-  // reported BOOLEAN NOT NULL DEFAULT FALSE,
-  // helpful INTEGER NOT NULL DEFAULT 0
-
-// 'SELECT p.id, p.body, p.date_written, p.asker_name, p.asker_email, p.reported, p.helpful from questions.questions p WHERE product_id = $1 LIMIT $2 OFFSET $3'
-
-// 'SELECT TOP $2 id, product_id, body, date_written, asker_name, asker_email, reported, helpful from questions.questions WHERE product_id = $1 OFFSET $3',
-
-// 'SELECT TOP $2 id AS question_id, body AS question_body, date_written AS question_date, asker_name, reported, helpful AS question_helpfulness WHERE product_id = $1 OFFSET $3'
-
-let text = `
+  const text = `
 SELECT
-id AS question_id,
-body AS question_body,
-date_written AS question_date,
-asker_name,
-reported,
-helpful AS question_helpfulness
+questions.id AS question_id,
+questions.body AS question_body,
+questions.date_written AS question_date,
+questions.asker_name,
+questions.reported,
+questions.helpful AS question_helpfulness
 FROM questions
-WHERE reported IS FALSE AND
-product_id = $1
+WHERE questions.product_id = $1 AND
+questions.reported IS FALSE
 LIMIT $2
+OFFSET $3
 `;
-  let query = {
+  let offset;
+  if (page === 1) {
+    offset = 0;
+  } else {
+    offset = (page-1)*count;
+  }
+  const query = {
     name: 'get questions',
     text: text,
-    values: [product_id, count],
+    values: [product_id, count, offset],
   };
   // let query = 'SELECT * FROM questions WHERE product_id = 40364';
   return db.query(query);
