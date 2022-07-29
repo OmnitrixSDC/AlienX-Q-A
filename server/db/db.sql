@@ -46,6 +46,3 @@ SET DATA TYPE timestamptz USING timestamptz 'epoch' + date_written * interval '1
   );
 
 \COPY photos FROM '../data/answers_photos.csv' DELIMITER ',' CSV HEADER;
-
-
-SELECT * FROM questionsLIMIT 5;
