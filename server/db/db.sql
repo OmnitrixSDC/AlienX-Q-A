@@ -23,15 +23,15 @@ ON questions(product_id);
 CREATE TABLE answers (
   id SERIAL UNIQUE PRIMARY KEY,
   question_id INTEGER,
-  CONSTRAINT fk_questions
-  FOREIGN KEY(question_id)
-  REFERENCES questions(id),
-  body character VARYING(1000) NOT NULL,
+  body CHARACTER VARYING(1000) NOT NULL,
   date_written BIGINT,
   answerer CHARACTER VARYING(60) NOT NULL,
   email TEXT NOT NULL,
   reported BOOLEAN DEFAULT FALSE,
-  helpful INTEGER DEFAULT 0
+  helpful INTEGER DEFAULT 0,
+  CONSTRAINT fk_questions
+  FOREIGN KEY(question_id)
+  REFERENCES questions(id)
   );
 
 \COPY answers FROM '../data/answers.csv' DELIMITER ',' CSV HEADER;
@@ -55,3 +55,9 @@ SET DATA TYPE timestamptz USING timestamptz 'epoch' + date_written * interval '1
 
   CREATE INDEX idx_photos_answer_id
   ON photos(answer_id);
+
+  CREATE INDEX idx_photos_id
+  ON photos(id);
+
+  CREATE INDEX idx_photos_url
+  ON photos(photo_url);
