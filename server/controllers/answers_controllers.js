@@ -1,6 +1,5 @@
 const db = require('../db');
 const answerQuery = `
-EXPLAIN ANALYZE
 SELECT
   answers.id,
   answers.body,

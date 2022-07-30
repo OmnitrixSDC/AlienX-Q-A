@@ -28,7 +28,6 @@ router.get('/qa/questions', (req, res) => {
     count = 5;
   }
   getQuestions(product_id, page, count).then((data) => {
-    console.log(data);
     res.send(data);
   }).catch((err) => {
     res.send(err);
