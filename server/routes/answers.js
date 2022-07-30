@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const answersController = require('../controllers/answers_controllers.js');
-let {getAnswers} = answersController;
+const {getAnswers, postAnswer} = answersController;
 
 router.get('/qa/questions/:question_id/answers', (req, res) => {
   let question_id;
@@ -24,13 +24,31 @@ router.get('/qa/questions/:question_id/answers', (req, res) => {
     count = 5;
   }
   getAnswers(question_id, page, count).then((data) => {
-    let output = {
+    const output = {
       question: question_id,
       page: page,
       count: count,
       results: data,
     };
     res.send(output);
+  }).catch((err) => {
+    res.send(err);
+  });
+});
+
+router.post('/qa/questions/:question_id/answers', (req, res) => {
+  let product_id;
+  let name;
+  let email;
+  let body;
+  if (req.body.product_id) {
+    product_id = req.body.product_id;
+  } else {
+    res.send('Error: invalid');
+  }
+
+  postAnswer(body, name, email, product_id).then((data) => {
+    res.send('Status: 201 CREATED');
   }).catch((err) => {
     res.send(err);
   });

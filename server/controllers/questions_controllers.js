@@ -1,5 +1,6 @@
 const db = require('../db');
-const questionQuery = `
+
+const getQuestionQuery = `
 SELECT
 questions.id AS question_id,
 questions.body AS question_body,
@@ -29,17 +30,65 @@ FROM questions
 WHERE questions.product_id = $1 AND
 questions.reported IS FALSE
 LIMIT $2
-OFFSET $3
+OFFSET $3;
 `;
-
-
 function getQuestions(product_id, page, count) {
   const offset = (page*count) - count;
   const query = {
-    name: 'get answers',
-    text: questionQuery,
+    name: 'get questions',
+    text: getQuestionQuery,
     values: [product_id, count, offset],
   };
   return db.query(query);
 }
 exports.getQuestions= getQuestions;
+
+
+postQuestionQuery = `
+INSERT INTO questions (body, asker_name, asker_email, product_id, date_written) SELECT $1, $2, $3, $4, CURRENT_TIMESTAMP WHERE EXISTS (SELECT FROM questions WHERE product_id = $4);
+`;
+
+function postQuestion(body, asker_name, asker_email, product_id) {
+  const query = {
+    name: 'post questions',
+    text: postQuestionQuery,
+    values: [body, asker_name, asker_email, Number(product_id)],
+  };
+  return db.query(query);
+}
+exports.postQuestion= postQuestion;
+
+
+putHelpfulQuery = `
+UPDATE questions
+SET helpful=helpful+1
+WHERE questions.id = $1;
+`;
+
+function putHelpful(question_id) {
+  const query = {
+    name: 'put helpful',
+    text: putHelpfulQuery,
+    values: [Number(question_id)],
+  };
+  return db.query(query);
+}
+exports.putHelpful = putHelpful;
+
+
+putReportQuery = `
+UPDATE questions
+SET reported=true
+WHERE questions.id = $1;
+`;
+
+function putReport(question_id) {
+  const query = {
+    name: 'put report',
+    text: putReportQuery,
+    values: [Number(question_id)],
+  };
+  return db.query(query);
+}
+exports.putReport= putReport;
+

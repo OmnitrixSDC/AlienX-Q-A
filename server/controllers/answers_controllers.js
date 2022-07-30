@@ -33,4 +33,55 @@ function getAnswers(question_id, page, count) {
   };
   return db.query(query);
 }
+
 exports.getAnswers= getAnswers;
+
+
+postAnswerQuery = `
+INSERT INTO answers (body, answerer, email, question_id, date_written) SELECT $1, $2, $3, $4, CURRENT_TIMESTAMP WHERE EXISTS (SELECT FROM answers WHERE question_id = $4);
+`;
+
+function postAnswer(body, asker_name, asker_email, question_id) {
+  const query = {
+    name: 'post answer',
+    text: postAnswerQuery,
+    values: [body, asker_name, asker_email, Number(question_id)],
+  };
+  return db.query(query);
+}
+exports.postAnswer = postAnswer;
+
+
+putHelpfulQuery = `
+UPDATE answers
+SET helpful=helpful+1
+WHERE answers.id = $1;
+`;
+
+function putHelpful(answer_id) {
+  const query = {
+    name: 'put helpful',
+    text: putHelpfulQuery,
+    values: [Number(answer_id)],
+  };
+  return db.query(query);
+}
+exports.putHelpful = putHelpful;
+
+
+putReportQuery = `
+UPDATE answers
+SET reported=true
+WHERE answers.id = $1;
+`;
+
+function putReport(answer_id) {
+  const query = {
+    name: 'put report',
+    text: putReportQuery,
+    values: [Number(answer_id)],
+  };
+  return db.query(query);
+}
+exports.putReport= putReport;
+

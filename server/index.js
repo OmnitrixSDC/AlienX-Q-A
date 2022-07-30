@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const questionRoutes = require('./routes/questions.js');
 const answerRoutes = require('./routes/answers.js');
-const dotenv = require('dotenv');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
