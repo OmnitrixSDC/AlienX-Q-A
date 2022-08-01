@@ -37,7 +37,7 @@ router.get('/qa/questions', (req, res) => {
           product_id: product_id,
           results: data,
         };
-        res.status(201).send(output);
+        res.status(200).send(output);
       }
     }).catch((err) => {
       res.status(404).send('Internal Server Error');
@@ -87,7 +87,7 @@ router.put('/qa/questions/:question_id/helpful', (req, res) => {
         res.status(204).send('Status: 204 NO CONTENT');
       }
     }).catch((err) => {
-      res.send(err.message);
+      res.status(404).send(err.message);
     });
   } else {
     res.send('Error: invalid question_id provided');

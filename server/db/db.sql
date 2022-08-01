@@ -19,6 +19,10 @@ ALTER COLUMN date_written
 SET DATA TYPE timestamptz USING timestamptz 'epoch' + date_written * interval '1 millisecond';
 CREATE INDEX idx_questions_product_id
 ON questions(product_id);
+CREATE INDEX idx_questions_helpful
+ON questions(helpful);
+CREATE INDEX idx_questions_reported
+ON questions(reported);
 
 CREATE TABLE answers (
   id SERIAL UNIQUE PRIMARY KEY,
@@ -41,6 +45,11 @@ SET DATA TYPE timestamptz USING timestamptz 'epoch' + date_written * interval '1
 
   CREATE INDEX idx_answers_question_id
   ON answers(question_id);
+  CREATE INDEX idx_answers_helpful
+  ON answers(helpful);
+  CREATE INDEX idx_answers_reported
+  ON answers(reported);
+
 
   CREATE TABLE photos (
   id SERIAL UNIQUE PRIMARY KEY,

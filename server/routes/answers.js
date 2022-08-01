@@ -32,7 +32,7 @@ router.get('/qa/questions/:question_id/answers', (req, res) => {
           count: count,
           results: data,
         };
-        res.status(201).send(output);
+        res.status(200).send(output);
       }
     }).catch((err) => {
       res.send(err);
@@ -80,7 +80,7 @@ router.put('/qa/answers/:answer_id/helpful', (req, res) => {
           res.status(404).send('Internal Server Error');
         }
       } else {
-        res.send('Status: 204 NO CONTENT');
+        res.status(204).send('Status: 204 NO CONTENT');
       }
     }).catch((err) => {
       res.send(err.message);
@@ -101,7 +101,7 @@ router.put('/qa/answers/:answer_id/report', (req, res) => {
           res.status(404).send('Internal Server Error');
         }
       } else {
-        res.send('Status: 204 NO CONTENT');
+        res.status(204).send('Status: 204 NO CONTENT');
       }
     }).catch((err) => {
       res.send(err.message);

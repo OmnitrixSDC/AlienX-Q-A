@@ -9,7 +9,7 @@ describe('GET /qa/questions', function() {
       count: 5,
     };
     const response = await request.get('/qa/questions').query(params);
-    expect(response.status).to.eql(201);
+    expect(response.status).to.eql(200);
     expect(response.body.results.length).to.eql(5);
   });
 
@@ -20,7 +20,7 @@ describe('GET /qa/questions', function() {
       count: 0,
     };
     const response = await request.get('/qa/questions').query(params);
-    expect(response.status).to.eql(201);
+    expect(response.status).to.eql(200);
     expect(response.body.results.length).to.eql(0);
   });
 
@@ -63,7 +63,7 @@ describe('GET /qa/questions/:question_id/answers', function() {
       count: 5,
     };
     const response = await request.get('/qa/questions/'+params.question_id+'/answers').query(params);
-    expect(response.status).to.eql(201);
+    expect(response.status).to.eql(200);
     expect(response.body.results.length).to.eql(5);
   });
 
@@ -74,7 +74,7 @@ describe('GET /qa/questions/:question_id/answers', function() {
       count: 5,
     };
     const response = await request.get('/qa/questions/'+params.question_id+'/answers').query(params);
-    expect(response.status).to.eql(201);
+    expect(response.status).to.eql(200);
     expect(response.body.results[0].photos.length).to.equal(0);
   });
 });
