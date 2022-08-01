@@ -37,7 +37,7 @@ router.get('/qa/questions', (req, res) => {
           product_id: product_id,
           results: data,
         };
-        res.send(output);
+        res.status(201).send(output);
       }
     }).catch((err) => {
       res.status(404).send('Internal Server Error');
@@ -53,7 +53,7 @@ router.post('/qa/questions', (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const body = req.body.body;
-    if (isNaN(product_id) || isNaN(page) || isNaN(count)) {
+    if (isNaN(product_id) || !isNaN(name) || !isNaN(email) || !isNaN(body)) {
       res.status(404).send('Error: invalid product_id provided');
       return;
     }
@@ -66,10 +66,10 @@ router.post('/qa/questions', (req, res) => {
         res.status(201).send('Status: 201 CREATED');
       }
     }).catch((err) => {
-      res.send(err.message);
+      res.status(404).send(err.message);
     });
   } else {
-    res.send('Error: invalid product_id provided');
+    res.status(404).send('Error: invalid product_id provided');
   }
 });
 
@@ -84,7 +84,7 @@ router.put('/qa/questions/:question_id/helpful', (req, res) => {
           res.status(404).send('Internal Server Error');
         }
       } else {
-        res.send('Status: 204 NO CONTENT');
+        res.status(204).send('Status: 204 NO CONTENT');
       }
     }).catch((err) => {
       res.send(err.message);
@@ -105,7 +105,7 @@ router.put('/qa/questions/:question_id/report', (req, res) => {
           res.status(404).send('Internal Server Error');
         }
       } else {
-        res.send('Status: 204 NO CONTENT');
+        res.status(204).send('Status: 204 NO CONTENT');
       }
     }).catch((err) => {
       res.send(err.message);

@@ -32,33 +32,38 @@ router.get('/qa/questions/:question_id/answers', (req, res) => {
           count: count,
           results: data,
         };
-        res.send(output);
+        res.status(201).send(output);
       }
     }).catch((err) => {
       res.send(err);
     });
   } else {
-    res.send('Error: invalid product_id provided');
+    res.status(404).send('Error: invalid product_id provided');
   }
 });
 
 router.post('/qa/questions/:question_id/answers', (req, res) => {
-  if (req.body.product_id) {
-    const product_id = req.body.product_id;
-    const name = req.body.name;
-    const email = req.body.email;
-    const body = req.body.body;
-    postAnswer(body, name, email, product_id).then((data) => {
-      if (data.name) {
-        if (data.name === 'error') {
-          res.status(404).send('Internal Server Error');
+  if (req.body.question_id) {
+    const question_id = req.body.question_id;
+    const name = req.body.name || '';
+    const email = req.body.email || '';
+    const body = req.body.body || '';
+    const photos = req.body.photos || [];
+    if (isNaN(name) || isNaN(email) || isNaN(body) || Array.isArray(photos)) {
+      postAnswer(body, name, email, question_id, photos).then((data) => {
+        if (data.name) {
+          if (data.name === 'error') {
+            res.status(404).send('Internal Server Error');
+          }
+        } else {
+          res.status(201).send('Status: 201 CREATED');
         }
-      } else {
-        res.send('Status: 201 CREATED');
-      }
-    }).catch((err) => {
-      res.send(err);
-    });
+      }).catch((err) => {
+        res.status(404).send(err);
+      });
+    } else {
+      res.status(404).send('Error: invalid input');
+    }
   } else {
     res.send('Error: invalid');
   }

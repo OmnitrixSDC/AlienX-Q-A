@@ -44,8 +44,12 @@ function getQuestions(product_id, page, count) {
 exports.getQuestions= getQuestions;
 
 
+// postQuestionQuery = `
+// INSERT INTO questions (body, asker_name, asker_email, product_id, date_written) SELECT $1, $2, $3, $4, CURRENT_TIMESTAMP WHERE EXISTS (SELECT FROM questions WHERE product_id = $4);
+// `;
+
 postQuestionQuery = `
-INSERT INTO questions (body, asker_name, asker_email, product_id, date_written) SELECT $1, $2, $3, $4, CURRENT_TIMESTAMP WHERE EXISTS (SELECT FROM questions WHERE product_id = $4);
+INSERT INTO questions(body, asker_name, asker_email, product_id, date_written) VALUES($1, $2, $3, $4, CURRENT_TIMESTAMP);
 `;
 
 function postQuestion(body, asker_name, asker_email, product_id) {
