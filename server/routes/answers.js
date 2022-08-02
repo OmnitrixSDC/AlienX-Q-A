@@ -4,26 +4,15 @@ const answersController = require('../controllers/answers_controllers.js');
 const {getAnswers, postAnswer, putHelpful, putReport} = answersController;
 
 router.get('/qa/questions/:question_id/answers', (req, res) => {
-  let question_id;
-  let page;
-  let count;
   if (req.query.question_id) {
-    question_id = req.query.question_id;
-    if (req.query.page) {
-      page = req.query.page;
-    } else {
-      page = 1;
-    }
-
-    if (req.query.count) {
-      count = req.query.count;
-    } else {
-      count = 5;
-    }
+    let question_id = req.query.question_id;
+    let page = req.query.page || 1;
+    let count = req.query.count || 5;
     getAnswers(question_id, page, count).then((data) => {
       if (data.name) {
         if (data.name === 'error') {
           res.status(404).send('Internal Server Error');
+          return;
         }
       } else {
         const output = {
@@ -78,6 +67,7 @@ router.put('/qa/answers/:answer_id/helpful', (req, res) => {
       if (data.name) {
         if (data.name === 'error') {
           res.status(404).send('Internal Server Error');
+          return;
         }
       } else {
         res.status(204).send('Status: 204 NO CONTENT');
