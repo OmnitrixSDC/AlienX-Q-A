@@ -40,7 +40,6 @@ function getQuestions(product_id, page, count) {
     text: getQuestionQuery,
     values: [product_id, count, offset],
   };
-  debugger;
   return db.query(query);
 }
 exports.getQuestions= getQuestions;

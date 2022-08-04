@@ -60,17 +60,15 @@ router.post('/qa/questions/:question_id/answers', (req, res) => {
 
 
 router.put('/qa/answers/:answer_id/helpful', (req, res) => {
-  let answer_id;
-  if (req.body.answer_id) {
-    answer_id = req.body.answer_id;
-    putHelpful(answer_id).then((data) => {
+  if (req.params.answer_id) {
+    putHelpful(req.params.answer_id).then((data) => {
       if (data.name) {
         if (data.name === 'error') {
           res.status(404).send('Internal Server Error');
           return;
         }
       } else {
-        res.status(204).send('Status: 204 NO CONTENT');
+        res.status(201).send('Status: 204 NO CONTENT');
       }
     }).catch((err) => {
       res.send(err.message);
@@ -82,16 +80,14 @@ router.put('/qa/answers/:answer_id/helpful', (req, res) => {
 
 
 router.put('/qa/answers/:answer_id/report', (req, res) => {
-  let answer_id;
-  if (req.body.answer_id) {
-    answer_id = req.body.answer_id;
-    putReport(answer_id).then((data) => {
+  if (req.params.answer_id) {
+    putReport(req.params.answer_id).then((data) => {
       if (data.name) {
         if (data.name === 'error') {
           res.status(404).send('Internal Server Error');
         }
       } else {
-        res.status(204).send('Status: 204 NO CONTENT');
+        res.status(201).send('Status: 204 NO CONTENT');
       }
     }).catch((err) => {
       res.send(err.message);

@@ -13,7 +13,6 @@ router.get('/qa/questions', (req, res) => {
     let page = req.query.page || 1;
     let count = req.query.count || 5;
     getQuestions(product_id, page, count).then((data) => {
-      debugger;
       if (data.name) {
         if (data.name === 'error') {
           res.status(404).send('Internal Server Error');
@@ -27,11 +26,9 @@ router.get('/qa/questions', (req, res) => {
         res.status(200).send(output);
       }
     }).catch((err) => {
-      debugger;
       res.status(404).send('Internal Server Error');
     });
   } else {
-    debugger;
     res.status(404).send('Internal Server Error');
   }
 });
@@ -65,16 +62,15 @@ router.post('/qa/questions', (req, res) => {
 
 
 router.put('/qa/questions/:question_id/helpful', (req, res) => {
-  if (req.body.question_id) {
-    let question_id = req.body.question_id;
-    putHelpful(question_id).then((data) => {
+  if (req.params.question_id) {
+    putHelpful(req.params.question_id).then((data) => {
       if (data.name) {
         if (data.name === 'error') {
           res.status(404).send('Internal Server Error');
           return;
         }
       } else {
-        res.status(204).send('Status: 204 NO CONTENT');
+        res.status(201).send('Status: 204 NO CONTENT');
       }
     }).catch((err) => {
       res.status(404).send(err.message);
@@ -86,16 +82,15 @@ router.put('/qa/questions/:question_id/helpful', (req, res) => {
 
 
 router.put('/qa/questions/:question_id/report', (req, res) => {
-  if (req.body.question_id) {
-    let question_id = req.body.question_id;
-    putReport(question_id).then((data) => {
+  if (req.params.question_id) {
+    putReport(req.params.question_id).then((data) => {
       if (data.name) {
         if (data.name === 'error') {
           res.status(404).send('Internal Server Error');
           return;
         }
       } else {
-        res.status(204).send('Status: 204 NO CONTENT');
+        res.status(201).send('Status: 204 NO CONTENT');
       }
     }).catch((err) => {
       res.send(err.message);
