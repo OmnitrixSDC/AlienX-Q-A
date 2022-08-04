@@ -13,6 +13,7 @@ router.get('/qa/questions', (req, res) => {
     let page = req.query.page || 1;
     let count = req.query.count || 5;
     getQuestions(product_id, page, count).then((data) => {
+      debugger;
       if (data.name) {
         if (data.name === 'error') {
           res.status(404).send('Internal Server Error');
@@ -26,9 +27,11 @@ router.get('/qa/questions', (req, res) => {
         res.status(200).send(output);
       }
     }).catch((err) => {
+      debugger;
       res.status(404).send('Internal Server Error');
     });
   } else {
+    debugger;
     res.status(404).send('Internal Server Error');
   }
 });

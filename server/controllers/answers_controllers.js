@@ -1,4 +1,5 @@
 const db = require('../db');
+
 const answerQuery = `
 SELECT
   answers.id,
@@ -35,6 +36,8 @@ function getAnswers(question_id, page, count) {
 }
 
 exports.getAnswers= getAnswers;
+
+// INSERT INTO answers (body, answerer, email, question_id, date_written) SELECT asdasd, ad, dasd, 1343, CURRENT_TIMESTAMP WHERE EXISTS (SELECT FROM answers WHERE question_id = 1343);
 
 const postAnswerQuery = `
 INSERT INTO answers (body, answerer, email, question_id, date_written) SELECT $1, $2, $3, $4, CURRENT_TIMESTAMP WHERE EXISTS (SELECT FROM answers WHERE question_id = $4);
