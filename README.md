@@ -18,10 +18,10 @@
 ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black) 
 
 
-Overview
+## Overview
 Created a scalable questions and answers microservice to an e-commerce website with low latency serving millions of rows of data.
 
-Accomplishments
+## Accomplishments
 Optimized a highly scalable microservie to handle 5k requests per second using just four AWS EC2 micro's.
 PostgreSQL Insert, Remove, and Update queries optimized to under 3ms over 10 million rows of data.
 Ensured low latency (62ms) and 0.00% error rate for fast reliable consumption
@@ -29,14 +29,15 @@ Utilized stress testing and monitoring tools such as K6, Loader.IO, and New Reli
 Implemented Nginx to provide caching and load balancing using the least connection load methodology
 Attempted to vertically scale by creating clusters and worker thread techniques
 
-Installation
-// install dependencies
-npm install
+##Installation
 
-// run client-compile
-npm run client-dev
 
-// run server
-npm run server-dev
+### Step 1
+```
+$ git https://github.com/OmnitrixSDC/AlienX-Q-A.git
+$ cd AlienX-Q-A
+$ npm install
+$ npm run client-dev
+$ npm run server-dev
 
 
