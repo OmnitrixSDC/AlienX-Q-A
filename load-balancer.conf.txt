@@ -1,0 +1,23 @@
+upstream mark {
+        least_conn;
+        zone upstreams 64k;
+        server 54.193.150.240:3000 max_fails=1 fail_timeout=2s;
+        server 54.193.214.164:3000;
+        keepalive 16;
+}
+proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=custom_cache:10m inactive=10m;
+
+server {
+        listen 80;
+
+        location / {
+                include proxy_params;
+                proxy_pass http://mark;
+                proxy_cache custom_cache;
+                proxy_cache_valid any 10m;
+                add_header X-Proxy-Cache $upstream_cache_status;
+        }
+        location /loaderio-e28477cb4b68a7717788d575bd9eb815/ {
+                return 200 'loaderio-e28477cb4b68a7717788d575bd9eb815';
+        }
+}

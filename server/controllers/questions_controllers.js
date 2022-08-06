@@ -63,10 +63,9 @@ function postQuestion(body, asker_name, asker_email, product_id) {
 }
 exports.postQuestion= postQuestion;
 
-
 putHelpfulQuery = `
 UPDATE questions
-SET helpful=helpful+1
+SET helpful=questions.helpful+1
 WHERE questions.id = $1;
 `;
 
