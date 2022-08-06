@@ -1,4 +1,4 @@
-# Rhydon Commercial <img align="right" src="https://github.com/Team-Rhydon/Rhydon/blob/main/client/src/assets/logos/rhydon-logos_30.jpeg?raw=true" alt="Rhydon Logo"/>
+# AlienX-Q-A
 
 
 ## Tech Stack
