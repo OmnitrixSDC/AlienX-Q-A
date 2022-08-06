@@ -22,17 +22,15 @@
 Created a scalable questions and answers microservice to an e-commerce website with low latency serving millions of rows of data.
 
 ## Accomplishments
-Optimized a highly scalable microservie to handle 5k requests per second using just four AWS EC2 micro's.
-PostgreSQL Insert, Remove, and Update queries optimized to under 3ms over 10 million rows of data.
-Ensured low latency (62ms) and 0.00% error rate for fast reliable consumption
-Utilized stress testing and monitoring tools such as K6, Loader.IO, and New Relic to pinpoint bottlenecks on a local machine and remote AWS Micro EC2 instance.
-Implemented Nginx to provide caching and load balancing using the least connection load methodology
-Attempted to vertically scale by creating clusters and worker thread techniques
+- Optimized a highly scalable microservie to handle 5k requests per second using just four AWS EC2 micro's.
+- PostgreSQL Insert, Remove, and Update queries optimized to under 3ms over 10 million rows of data.
+- Ensured low latency (62ms) and 0.00% error rate for fast reliable consumption
+- Utilized stress testing and monitoring tools such as K6, Loader.IO, and New Relic to pinpoint bottlenecks on a local machine and remote AWS Micro EC2 instance.
+- Implemented Nginx to provide caching and load balancing using the least connection load methodology
+- Attempted to vertically scale by creating clusters and worker thread techniques
 
 ##Installation
-
-
-### Step 1
+### Setup
 ```
 $ git https://github.com/OmnitrixSDC/AlienX-Q-A.git
 $ cd AlienX-Q-A
