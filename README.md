@@ -30,12 +30,9 @@ Created a scalable questions and answers microservice to an e-commerce website w
 - Attempted to vertically scale by creating clusters and worker thread techniques
 
 ## Installation
-### Setup
 ```
 $ git https://github.com/OmnitrixSDC/AlienX-Q-A.git
 $ cd AlienX-Q-A
 $ npm install
 $ npm run client-dev
 $ npm run server-dev
-
-
