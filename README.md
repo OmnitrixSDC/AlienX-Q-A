@@ -29,7 +29,7 @@ Created a scalable questions and answers microservice to an e-commerce website w
 - Implemented Nginx to provide caching and load balancing using the least connection load methodology
 - Attempted to vertically scale by creating clusters and worker thread techniques
 
-##Installation
+## Installation
 ### Setup
 ```
 $ git https://github.com/OmnitrixSDC/AlienX-Q-A.git
